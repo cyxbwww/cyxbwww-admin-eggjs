@@ -1,9 +1,9 @@
-'use strict'
-
 /**
- * @param {Egg.Application} app - egg application
+ * @Description 路由页面
+ * @Author luomingfeng
+ * @Date 2022/3/26 17:10
  */
+
 module.exports = (app) => {
-  const { router, controller } = app
-  router.get('/', controller.home.index)
+  require('./router/user')(app)
 }
