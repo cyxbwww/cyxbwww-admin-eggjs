@@ -11,6 +11,13 @@ class UserService extends Service {
     super(ctx)
   }
 
+  async initAdmin() {
+    return this.responseHandler(
+      this.errorMap.SUCCESS,
+      await this.app.model.UserModel.initAdmin(this.params)
+    )
+  }
+
   async login() {
     // todo
     console.log('==============', this)
