@@ -11,14 +11,13 @@ class ApiService extends Service {
     super(ctx)
     this.codeMap = this.config.codeMap
     this.errorMap = this.config.errorMap
-    this.helper = ctx.helper
     this.params = ctx.method === 'GET' ? ctx.query : ctx.request.body
     this.directory = ctx.url.replace('/api/', '').split('/')
   }
 
   async verifyApiParam() {
     const validate = await this.paramHandle()
-    if (!this.helper.isEmptyObject(validate)) return validate
+    if (!this.app.isEmptyObject(validate)) return validate
     let callService = await this.service
     this.directory.forEach((v) => {
       callService = callService[v]
@@ -27,13 +26,13 @@ class ApiService extends Service {
   }
 
   async paramHandle() {
-    const keyCount = this.helper.extractKey(this.params).length
-    const validteKeyCount = this.helper.extractKey(this.app.validateRule).length
+    const keyCount = this.app.extractKey(this.params).length
+    const validteKeyCount = this.app.extractKey(this.app.validateRule).length
 
-    if (this.helper.isEmptyObject(this.app.validateRule ?? {})) {
+    if (this.app.isEmptyObject(this.app.validateRule ?? {})) {
       return this.responseHandler(this.errorMap.PARAM_RULE_NO_ALLOW_EMPTY)
     }
-    if (this.helper.isEmptyObject(this.params)) {
+    if (this.app.isEmptyObject(this.params)) {
       return this.responseHandler(this.errorMap.PARMA_MISSING)
     }
     if (keyCount < validteKeyCount) {
@@ -43,9 +42,9 @@ class ApiService extends Service {
       return this.responseHandler(this.errorMap.PARMA_ERROR)
     }
 
-    for (let i in this.app.validateRule) {
+    for (const i in this.app.validateRule) {
       const validateType = this.app.validateRule[i].type
-      if (this.helper.isInArray(this.helper.extractKey(this.params), validateType)) {
+      if (this.app.isInArray(this.app.extractKey(this.params), validateType)) {
         return this.responseHandler(this.errorMap.PARMA_ERROR)
         // todo
       }

@@ -23,7 +23,9 @@ module.exports = {
     let keyFilter = ['_url', '_']
     for (const i in target) {
       if (this.isInArray(keyFilter, i)) break
-      key.push(i)
+      if (target[i].required ?? true) {
+        key.push(i)
+      }
     }
     return key
   },
