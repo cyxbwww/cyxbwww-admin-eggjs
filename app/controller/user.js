@@ -9,6 +9,7 @@ const Controller = require('egg').Controller
 class UserController extends Controller {
   async initAdmin() {
     this.app.validateRule = {
+      phone: { type: 'string', required: true },
       username: { type: 'string', required: true },
       email: { type: 'string', required: true },
       password: { type: 'string', required: true },
