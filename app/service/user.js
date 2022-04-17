@@ -9,6 +9,7 @@ const Service = require('egg').Service
 class UserService extends Service {
   constructor(ctx) {
     super(ctx)
+    this.helper = ctx.helper
   }
 
   async initAdmin() {
@@ -19,8 +20,10 @@ class UserService extends Service {
   }
 
   async login() {
-    // todo
-    console.log('==============', this)
+    return this.responseHandler(
+      this.errorMap.SUCCESS,
+      await this.app.model.UserModel.getUserInfo(this.params)
+    )
   }
 }
 

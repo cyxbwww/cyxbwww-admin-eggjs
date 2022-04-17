@@ -6,7 +6,7 @@
 
 module.exports = (app) => {
   const table = 'user'
-  const { DATE, STRING, INTEGER } = app.Sequelize
+  const { DATE, STRING, INTEGER, Op } = app.Sequelize
   const UserModel = app.model.define(
     table,
     {
@@ -22,14 +22,14 @@ module.exports = (app) => {
         type: DATE,
         get() {
           if (this.getDataValue('created_at'))
-            return this.helper.formatTime(this.getDataValue('created_at'))
+            return app.formatTime(this.getDataValue('created_at'))
         },
       },
       updated_at: {
         type: DATE,
         get() {
           if (this.getDataValue('updated_at'))
-            return this.helper.formatTime(this.getDataValue('updated_at'))
+            return app.formatTime(this.getDataValue('updated_at'))
         },
       },
       deleted_at: DATE,
@@ -54,11 +54,26 @@ module.exports = (app) => {
    * @Date 2022/4/9 14:37
    */
   UserModel.initAdmin = async (params) => {
-    const { username, email, password } = params
+    const { phone, username, email, password } = params
     return UserModel.create({
+      phone: phone,
       name: username,
       email: email,
       password: password,
+    })
+  }
+
+  /**
+   * @Description 查询用户信息
+   * @Author luomingfeng
+   * @Date 2022/4/14 21:07
+   */
+  UserModel.getUserInfo = async (params) => {
+    const { phone } = params
+    return UserModel.findOne({
+      where: {
+        [Op.or]: [{ phone: phone }, { name: phone }],
+      },
     })
   }
 
