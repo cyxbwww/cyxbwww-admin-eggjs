@@ -1,5 +1,5 @@
 /**
- * @Description 扩展 helper
+ * @Description 扩展 application
  * @Author luomingfeng
  * @Date 2022/3/26 21:39
  */
