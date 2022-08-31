@@ -69,11 +69,12 @@ module.exports = (app) => {
    * @Date 2022/4/14 21:07
    */
   UserModel.getUserInfo = async (params) => {
-    const { phone } = params
+    const { username } = params
     return UserModel.findOne({
       where: {
-        [Op.or]: [{ phone: phone }, { name: phone }],
+        [Op.or]: [{ phone: username }, { name: username }],
       },
+      attributes: ['id', 'name', 'phone', 'email', 'password'],
     })
   }
 

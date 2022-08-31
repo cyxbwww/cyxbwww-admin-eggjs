@@ -24,6 +24,13 @@ class UserController extends Controller {
     }
     this.ctx.body = await this.service.apiService.verifyApiParam()
   }
+
+  async getUserRoutes() {
+    this.app.validateRule = {
+      userId: { type: 'string', required: true },
+    }
+    this.ctx.body = await this.service.apiService.verifyApiParam()
+  }
 }
 
 module.exports = UserController
