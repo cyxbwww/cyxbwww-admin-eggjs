@@ -20,6 +20,12 @@ module.exports = (appInfo) => {
   config.codeMap = codeMap
 
   config.errorMap = errorMap
+
+  config.jwt = {
+    expire: 7200, // token过期时间
+    secret: '123456',
+  }
+
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
