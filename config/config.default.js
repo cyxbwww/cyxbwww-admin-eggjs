@@ -22,8 +22,7 @@ module.exports = (appInfo) => {
   config.errorMap = errorMap
 
   config.jwt = {
-    expire: 7200, // token过期时间
-    secret: '123456',
+    secret: 'cyxbwww',
   }
 
   // add your user config here

@@ -29,7 +29,10 @@ class UserService extends Service {
           {
             userId,
           },
-          this.app.config.jwt.secret
+          this.app.config.jwt.secret,
+          {
+            expiresIn: '2h', // token过期时间
+          }
         )
         const userInfo = {
           userId,
