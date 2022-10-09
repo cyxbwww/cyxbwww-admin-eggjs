@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS `my_blog_test`;
-CREATE DATABASE `my_blog_test` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+DROP DATABASE IF EXISTS `cyxbwww_admin`;
+CREATE DATABASE `cyxbwww_admin` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 
-USE `my_blog_test`;
+USE `cyxbwww_admin`;
 
 SET NAMES utf8mb4;
 
@@ -59,7 +59,6 @@ CREATE TABLE `user`  (
   `headimg` varchar (1024) DEFAULT NULL,
   `remark` varchar(100) DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 1 COMMENT '用户状态 0: 禁用 1: 正常',
-  `token` varchar(128) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,

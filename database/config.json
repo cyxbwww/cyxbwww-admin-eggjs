@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "my_blog_test",
+    "database": "cyxbwww_admin",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
