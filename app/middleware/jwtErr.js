@@ -6,11 +6,11 @@ module.exports = (options) => {
       ctx.app.jwt.verify(token, options.secret)
       await next()
     } catch (error) {
-      ctx.status = 401
+      ctx.status = 200
       ctx.body = {
         code: 2000,
         message: 'token已过期，请重新登录',
-        data: '',
+        data: null,
       }
     }
   }
