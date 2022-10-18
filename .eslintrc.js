@@ -13,7 +13,6 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'linebreak-style': ['error', 'unix'],
     semi: ['error', 'never'],
     quotes: ['error', 'single'],
   },
